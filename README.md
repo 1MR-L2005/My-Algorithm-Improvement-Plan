@@ -1,6 +1,6 @@
 # 算法学习记录 Algorithm Learning Notes
 
-我按照以下几个方面进行算法初步学习（顺序有所不同）：
+我按照以下几个方面进行算法初步学习（顺序有所不同），网址为(https://leetcode.cn/studyplan/selected-coding-interview/)：
 
 - 链表  
 - 栈与队列  
