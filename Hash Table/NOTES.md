@@ -4,7 +4,7 @@
 它会自动按照键排序，并提供高效的查找、插入和删除操作。
 
 
-一、map 的定义与初始化
+## 一、map 的定义与初始化
 
 
 #include <iostream>
@@ -154,4 +154,6 @@ map<int, string> id_to_name = {{2,"Tom"},{1,"Amy"},{3,"Jack"}};
 遍历	for (auto [k,v] : mp)
 判断存在	if(mp.count(key))
 清空	mp.clear();
+
+##unordered_map为不按照key值排序的无序map
 
