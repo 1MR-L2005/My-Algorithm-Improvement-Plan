@@ -3,11 +3,10 @@
 `std::map` 是 C++ 中最常用的关联容器之一，用于存储 **键值对 (key-value)** 数据。  
 它会自动按照键排序，并提供高效的查找、插入和删除操作。
 
----
 
 一、map 的定义与初始化
 
-```cpp
+
 #include <iostream>
 #include <map>
 using namespace std;
