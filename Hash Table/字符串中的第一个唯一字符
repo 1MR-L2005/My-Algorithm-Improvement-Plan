@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        map<char,int> s_new;
+        char goal;
+        for(char c:s)
+        {
+            s_new[c]++;
+        }
+        for(int i=0;i<s.size();i++)
+        {
+            if(s_new[s[i]]==1)return i;
+        }
+        return -1;
+    }
+};
