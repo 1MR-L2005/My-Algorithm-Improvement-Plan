@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int longestPalindrome(string s) {
+        map<char,int>s_store;
+        for(char c:s)
+        {
+            s_store[c]++;
+        }
+        int length=0;
+        bool odd=false;
+        for(auto pr:s_store)
+        {
+            if(pr.second%2){
+               odd=true;
+               length+=(pr.second-1);
+            }
+            else length+=pr.second;
+        }
+        if(odd)return length+1;
+        else return length;
+    }
+};
