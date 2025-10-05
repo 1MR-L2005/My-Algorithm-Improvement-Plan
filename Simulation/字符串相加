@@ -1,0 +1,33 @@
+class Solution {
+public:
+    string addStrings(string num1, string num2) {
+        string addresult;
+        reverse(num1.begin(),num1.end());
+        reverse(num2.begin(),num2.end());
+        int S=0;
+        auto pr1=(num1.size()>num2.size())?num1.begin():num2.begin();
+        auto pr_end1=(num1.size()>num2.size())?num1.end():num2.end();
+        auto pr2=(num1.size()<=num2.size())?num1.begin():num2.begin();
+        auto pr_end2=(num1.size()<=num2.size())?num1.end():num2.end();
+        for(;pr2!=pr_end2;pr2++,pr1++)
+        {
+           int a=(int)(*pr1-'0');
+           int b=(int)(*pr2-'0');
+           int sum_a_b=a+b+S;
+           S=sum_a_b/10;
+           sum_a_b%=10;
+           addresult.push_back((char)(sum_a_b+'0'));
+        }
+        for(;pr1!=pr_end1;pr1++)
+        {
+            int a=(int)(*pr1-'0');
+            int sum=a+S;
+            S=sum/10;
+            sum%=10;
+            addresult.push_back((char)(sum+'0'));
+        }
+        if(S)addresult.push_back('1');
+        reverse(addresult.begin(),addresult.end());
+        return addresult;
+    }
+};
