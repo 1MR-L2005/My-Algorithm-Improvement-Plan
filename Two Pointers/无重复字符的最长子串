@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        if(s.size()<2)return s.size();
+        int left=0;
+        int right=0;
+        int max_length=1;
+        int current_length=1;
+        map<char,int>direction_c;
+        direction_c[s[left]]=left;
+        for(int i=1;i<s.size();i++)
+        {
+            if((s[i]!=s[0]&&!direction_c[s[i]])||(direction_c[s[i]]<left))
+            {
+                direction_c[s[i]]=i;
+                current_length++;
+                if(current_length>max_length)max_length=current_length;
+                right=i;
+            }
+            else
+            {
+                left=direction_c[s[i]]+1;
+                direction_c[s[i]]=i;
+                right=i;
+                current_length=right-left+1;
+            }
+        }
+        return max_length;
+    }
+};
