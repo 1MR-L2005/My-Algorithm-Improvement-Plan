@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int midsearch(int left,int right,vector<int>&nums,int goal)
+    {
+        if(left>right)return -1;
+        if(left==right)
+        {
+            if(nums[left]==goal)return left;
+            else return -1;
+        }
+        int mid=(left+right)/2+1;
+        if(nums[mid]<goal)return midsearch(mid+1,right,nums,goal);
+        if(nums[mid]>goal)return midsearch(left,mid-1,nums,goal);
+        return mid;
+    }
+    int search(vector<int>& nums, int target) {
+        return midsearch(0,nums.size()-1,nums,target);
+    }
+};
