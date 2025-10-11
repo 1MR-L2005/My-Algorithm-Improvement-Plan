@@ -1,0 +1,17 @@
+class Solution {
+public:
+    string largestNumber(vector<int>& nums) {
+        vector<string>s_nums;
+        for(auto pr:nums)
+        {
+            s_nums.push_back(to_string(pr));
+        }
+        sort(s_nums.begin(),s_nums.end(),[](string &x,string &y){return y+x<x+y;});
+        if(s_nums[0]=="0")return "0";
+        for(int i=1;i<nums.size();i++)
+        {
+            s_nums[0]+=s_nums[i];
+        }
+        return s_nums[0];
+    }
+};
