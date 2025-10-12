@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+        order_nums(nums,0);
+        return goal;
+    }
+private:
+    vector<vector<int>>goal;
+    void order_nums(vector<int>nums,int x)
+    {
+        if(x==nums.size()-1)
+        {
+            goal.push_back(nums);
+            return;
+        }
+        set<int>check_nums;
+        for(int i=x;i<nums.size();i++)
+        {
+            if(check_nums.find(nums[i])!=check_nums.end())
+            {
+                continue;
+            }
+            check_nums.insert(nums[i]);
+            swap(nums[i],nums[x]);
+            order_nums(nums,x+1);
+            swap(nums[x],nums[i]);
+        }
+        return;
+    }
+};
