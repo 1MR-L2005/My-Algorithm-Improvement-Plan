@@ -1,0 +1,39 @@
+class Solution {
+public:
+    bool exist(vector<vector<char>>& board, string word) {
+        vector<vector<bool>>used(board.size(),vector<bool>(board[0].size(),0));
+        bool judge=false;
+        for(int i=0;i<board.size();i++)
+        {
+            if(judge)break;
+            for(int j=0;j<board[0].size();j++)
+            {
+                if(board[i][j]==word[0]&&!judge)
+                {
+                    judge=search_word(board,word,i,j,used);
+                }
+            }
+        }
+        return judge;
+    }
+private:
+    string res;
+    bool search_word(vector<vector<char>>&board,string word,int i,int j,vector<vector<bool>>&used)
+    {
+        if(res.size()>word.size()||board[i][j]!=word[res.size()])return false;
+        used[i][j]=1;
+        res.push_back(board[i][j]);
+        if(res==word)return true;
+        bool up=false;
+        bool down=false;
+        bool right=false;
+        bool left=false;
+        if(i<board.size()-1&&!used[i+1][j])down=search_word(board,word,i+1,j,used);
+        if(j<board[0].size()-1&&!used[i][j+1])right=search_word(board,word,i,j+1,used);
+        if(i>0&&!used[i-1][j])up=search_word(board,word,i-1,j,used);
+        if(j>0&&!used[i][j-1])left=search_word(board,word,i,j-1,used);
+        res.pop_back();
+        used[i][j]=0;
+        return (down||right||up||left);
+    }
+};
