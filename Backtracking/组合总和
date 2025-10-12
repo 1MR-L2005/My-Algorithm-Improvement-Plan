@@ -1,0 +1,24 @@
+class Solution {
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        search_add_target(candidates,target,0,0);
+        return goal;
+    }
+private:
+    vector<vector<int>>goal;
+    vector<int>res;
+    void search_add_target(vector<int> candidates,int target,int curror,int x)
+    {
+        if(curror>target)return;
+        if(curror==target){
+            goal.push_back(res);
+        }
+        for(int i=x;i<candidates.size();i++)
+        {
+            res.push_back(candidates[i]);
+            search_add_target(candidates,target,curror+candidates[i],i);
+            res.pop_back();
+        }
+        return;
+    }
+};
