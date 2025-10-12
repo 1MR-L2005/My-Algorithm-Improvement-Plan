@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        sort(candidates.begin(),candidates.end());
+        search_target(candidates,target,0,0);
+        return goal;
+    }
+private:
+    vector<vector<int>>goal;
+    vector<int>res;
+    void search_target(vector<int>candidates,int target,int x,int curror)
+    {
+        if(curror>target)return;
+        if(curror==target)
+        {
+            goal.push_back(res);
+        }
+        int last=-1;
+        for(int i=x;i<candidates.size();i++)
+        {
+            if(last==candidates[i])continue;
+            last=candidates[i];
+            res.push_back(candidates[i]);
+            search_target(candidates,target,i+1,curror+candidates[i]);
+            res.pop_back();
+        }
+        return;
+    }
+};
