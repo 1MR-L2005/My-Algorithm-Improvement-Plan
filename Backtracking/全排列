@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<pair<int,bool>>used;
+        for(auto pr:nums)
+        {
+            used.push_back({pr,0});
+        }
+        nums_order(used,permutation);
+        return goal;
+    }
+private:
+    vector<vector<int>>goal;
+    vector<int>permutation;
+    void nums_order(vector<pair<int,bool>>used,vector<int>permutation)
+    {
+        if(permutation.size()==used.size())
+        {
+            goal.push_back(permutation);
+            return;
+        }
+        for(int i=0;i<used.size();i++)
+        {
+            if(!used[i].second){
+                used[i].second=1;
+                permutation.push_back(used[i].first);
+                nums_order(used,permutation);
+                permutation.pop_back();
+                used[i].second=0;
+            }
+        }
+        return;
+    }
+};
