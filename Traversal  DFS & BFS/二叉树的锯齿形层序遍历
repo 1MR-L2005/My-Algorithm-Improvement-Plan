@@ -1,0 +1,50 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        deque<TreeNode*>node_store1;
+        deque<TreeNode*>node_store2;
+        vector<vector<int>>goal;
+        if(!root)return goal;
+        TreeNode*curror=root;
+        node_store1.push_back(root);
+        while(!node_store1.empty()||!node_store2.empty())
+        {
+            vector<int>t;
+            if(node_store2.empty())
+            {
+                while(!node_store1.empty())
+                {
+                    curror=node_store1.front();
+                    t.push_back(curror->val);
+                    if(curror->left)node_store2.push_back(curror->left);
+                    if(curror->right)node_store2.push_back(curror->right);
+                    node_store1.pop_front();
+                }
+            }
+            else
+            {
+                while(!node_store2.empty())
+                {
+                    curror=node_store2.back();
+                    t.push_back(curror->val);
+                    if(curror->right)node_store1.push_front(curror->right);
+                    if(curror->left)node_store1.push_front(curror->left);
+                    node_store2.pop_back();
+                }
+            }
+            goal.push_back(t);
+        }
+        return goal;
+    }
+};
