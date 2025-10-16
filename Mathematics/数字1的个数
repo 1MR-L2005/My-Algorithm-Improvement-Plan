@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int countDigitOne(int n) {
+        int high=0;
+        int low=0;
+        int digit=0;
+        int total=0;
+        while(n)
+        {
+            high=n/10;
+            int t=n%10;
+            if(!t)
+            {
+                total+=high*pow(10,digit);
+            }
+            if(t==1)
+            {
+                total+=high*pow(10,digit)+low+1;
+            }
+            if(t>1)
+            {
+                total+=(high+1)*pow(10,digit);
+            }
+            low+=t*pow(10,digit);
+            digit++;
+            n/=10;
+        }
+        return total;
+    }
+};
