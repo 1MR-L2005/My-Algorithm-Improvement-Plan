@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        return quickselect(nums,k);
+    }
+private:
+    int quickselect(vector<int>&nums,int k)
+    {
+        int pivit=nums[rand()%nums.size()];
+        vector<int>big,equal,small;
+        for(int num:nums)
+        {
+            if(num>pivit)
+            {
+                big.push_back(num);
+            }
+            if(num==pivit)
+            {
+                equal.push_back(num);
+            }
+            if(num<pivit)
+            {
+                small.push_back(num);
+            }
+        }
+        if(k<=big.size())
+        {
+            return quickselect(big,k);
+        }
+        if(nums.size()-small.size()<k)
+        {
+            return quickselect(small,k-nums.size()+small.size());
+        }
+        return pivit;
+    }
+};
