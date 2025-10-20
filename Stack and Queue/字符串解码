@@ -1,0 +1,47 @@
+class Solution {
+public:
+    string decodeString(string s) {
+        stack<string> s1;
+        string goal;
+        for(auto pr:s)
+        {
+            if(pr==']')
+            {
+                string temp;
+                while(!s1.empty()&&s1.top()!="[")
+                {
+                    temp=s1.top()+temp;
+                    s1.pop();
+                }
+                if(!s1.empty()&&s1.top()=="[")s1.pop();
+                int time=0;
+                int digit=0;
+                string t1=temp;
+                while(!s1.empty()&&s1.top()[0]>='0'&&s1.top()[0]<='9')
+                {
+                    time+=pow(10,digit++)*(int)(s1.top()[0]-'0');
+                    s1.pop();
+                }
+                if(time)
+                {
+                    for(int i=0;i<time-1;i++)
+                    {
+                        t1+=temp;
+                    }
+                }
+                s1.push(t1);
+            }
+            else{
+                string s2;
+                s2.push_back(pr);
+                s1.push(s2);
+            }
+        }
+        while(!s1.empty())
+        {
+            goal=s1.top()+goal;
+            s1.pop();
+        }
+        return goal;
+    }
+};
